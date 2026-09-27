@@ -1,0 +1,353 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="class-banner">
+
+<p class="eyebrow">
+CLASSROOM
+</p>
+
+<h1>
+{{ classroom.name }}
+</h1>
+
+<p>
+{{ classroom.description }}
+</p>
+
+<div class="code">
+
+Share class code:
+
+<b>
+{{ classroom.code }}
+</b>
+
+</div>
+
+</div>
+
+
+<div class="grid two">
+
+
+<div>
+
+
+{% if classroom.owner_id == current_user.id %}
+
+<div class="card">
+
+<h2>
+Announcement
+</h2>
+
+<form
+method="post"
+action="{{ url_for('post',
+class_id=classroom.id) }}">
+
+<textarea
+name="body"
+required
+placeholder="Write an announcement...">
+</textarea>
+
+<button class="button">
+Post
+</button>
+
+</form>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+Create assignment
+</h2>
+
+<form
+method="post"
+action="{{ url_for('assignment',
+class_id=classroom.id) }}">
+
+<label>
+
+Title
+
+<input
+name="title"
+required>
+
+</label>
+
+
+<label>
+
+Description
+
+<textarea
+name="description">
+</textarea>
+
+</label>
+
+
+<label>
+
+Due date
+
+<input
+type="datetime-local"
+name="due_date">
+
+</label>
+
+
+<button class="button">
+Create assignment
+</button>
+
+</form>
+
+</div>
+
+{% endif %}
+
+
+
+<h2>
+Announcements
+</h2>
+
+
+{% for p in posts %}
+
+<div class="card">
+
+<b>
+{{ p.author.name }}
+</b>
+
+<small>
+{{ p.created_at.strftime("%d %b %Y, %H:%M") }}
+</small>
+
+<p>
+{{ p.body }}
+</p>
+
+</div>
+
+{% else %}
+
+<div class="card">
+No announcements yet.
+</div>
+
+{% endfor %}
+
+
+
+<h2>
+Assignments
+</h2>
+
+
+{% for a in assignments %}
+
+<div class="card">
+
+<h3>
+{{ a.title }}
+</h3>
+
+<p>
+{{ a.description }}
+</p>
+
+
+{% if a.due_date %}
+
+<small>
+Due:
+{{ a.due_date.strftime("%d %b %Y, %H:%M") }}
+</small>
+
+{% endif %}
+
+
+{% if classroom.owner_id != current_user.id %}
+
+<form
+method="post"
+enctype="multipart/form-data"
+action="{{ url_for('submit_assignment',
+assignment_id=a.id) }}">
+
+<label>
+
+Your answer
+
+<textarea
+name="content">
+</textarea>
+
+</label>
+
+
+<label>
+
+Attach file
+
+<input
+type="file"
+name="file">
+
+</label>
+
+
+<button class="button">
+Submit
+</button>
+
+</form>
+
+{% endif %}
+
+</div>
+
+{% else %}
+
+<div class="card">
+No assignments yet.
+</div>
+
+{% endfor %}
+
+</div>
+
+
+
+<div>
+
+
+<div class="card"
+id="class-chat">
+
+<h2>
+Class chat
+</h2>
+
+
+<div
+class="chat-box compact"
+id="classMessages">
+
+{% for m in messages %}
+
+<div
+class="message
+{% if m.sender_id == current_user.id %}
+mine
+{% endif %}">
+
+<b>
+{{ m.sender.name }}
+</b>
+
+<p>
+{{ m.body }}
+</p>
+
+<small>
+{{ m.created_at.strftime("%H:%M") }}
+</small>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+<form
+class="chat-form"
+method="post"
+action="{{ url_for('class_message',
+class_id=classroom.id) }}">
+
+<input
+name="body"
+placeholder="Message your class..."
+required>
+
+<button class="button">
+Send
+</button>
+
+</form>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+Members
+</h2>
+
+
+{% for m in members %}
+
+<div class="member">
+
+<span>
+{{ m.user.name }}
+</span>
+
+<small>
+{{ m.role }}
+</small>
+
+
+{% if m.user.id != current_user.id %}
+
+<a
+href="{{ url_for('start_chat',
+user_id=m.user.id) }}">
+
+Private chat
+
+</a>
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+setInterval(
+function(){
+location.reload();
+},
+7000
+);
+
+</script>
+
+{% endblock %}

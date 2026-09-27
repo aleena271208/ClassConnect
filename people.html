@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-head">
+
+<p class="eyebrow">
+PEOPLE
+</p>
+
+<h1>
+Find someone to chat with
+</h1>
+
+<p>
+Personal chat is available only for
+registered ClassConnect accounts.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<form method="get">
+
+<label>
+
+Search by name or email
+
+<input
+name="q"
+value="{{ q }}"
+placeholder="Type a name or email">
+
+</label>
+
+
+<button class="button">
+Search
+</button>
+
+</form>
+
+</div>
+
+
+{% if q %}
+
+<h2>
+Results
+</h2>
+
+
+{% for user in users %}
+
+<div class="card row">
+
+<div>
+
+<strong>
+{{ user.name }}
+</strong>
+
+<br>
+
+<small>
+{{ user.email }}
+</small>
+
+</div>
+
+
+<a
+class="button"
+href="{{ url_for('start_chat',
+user_id=user.id) }}">
+
+Message
+
+</a>
+
+</div>
+
+
+{% else %}
+
+<div class="card">
+
+No registered user matched that search.
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock %}

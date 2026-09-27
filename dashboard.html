@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-head">
+
+<div>
+
+<p class="eyebrow">
+DASHBOARD
+</p>
+
+<h1>
+Your classrooms
+</h1>
+
+</div>
+
+</div>
+
+
+<div class="grid two">
+
+
+<div class="card">
+
+<h2>
+Create a classroom
+</h2>
+
+<form
+method="post"
+action="{{ url_for('create_class') }}">
+
+<label>
+
+Class name
+
+<input
+name="name"
+required>
+
+</label>
+
+
+<label>
+
+Description
+
+<textarea
+name="description">
+</textarea>
+
+</label>
+
+
+<button class="button">
+Create classroom
+</button>
+
+</form>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>
+Join a classroom
+</h2>
+
+<form
+method="post"
+action="{{ url_for('join_class') }}">
+
+<label>
+
+Class code
+
+<input
+name="code"
+maxlength="10"
+placeholder="A7K9P2Q"
+required>
+
+</label>
+
+
+<button class="button">
+Join classroom
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<h2>
+Your classes
+</h2>
+
+
+<div class="grid">
+
+{% for m in memberships %}
+
+<a
+class="card class-card"
+href="{{ url_for('classroom',
+class_id=m.classroom.id) }}">
+
+<span>
+{{ m.role }}
+</span>
+
+<h2>
+{{ m.classroom.name }}
+</h2>
+
+<p>
+{{ m.classroom.description }}
+</p>
+
+<b>
+Code: {{ m.classroom.code }}
+</b>
+
+</a>
+
+{% else %}
+
+<div class="card">
+
+<p>
+You have not joined a classroom yet.
+</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

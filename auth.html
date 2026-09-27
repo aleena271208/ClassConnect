@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card auth">
+
+<h1>
+{{ "Create your account" if mode=="register"
+else "Welcome back" }}
+</h1>
+
+<form method="post">
+
+{% if mode=="register" %}
+
+<label>
+
+Name
+
+<input
+name="name"
+required>
+
+</label>
+
+{% endif %}
+
+
+<label>
+
+Email
+
+<input
+type="email"
+name="email"
+required>
+
+</label>
+
+
+<label>
+
+Password
+
+<input
+type="password"
+name="password"
+required>
+
+</label>
+
+
+<button class="button">
+
+{{ "Create account" if mode=="register"
+else "Log in" }}
+
+</button>
+
+</form>
+
+
+<p>
+
+{% if mode=="register" %}
+
+Already have an account?
+
+<a href="{{ url_for('login') }}">
+Log in
+</a>
+
+{% else %}
+
+New here?
+
+<a href="{{ url_for('register') }}">
+Create an account
+</a>
+
+{% endif %}
+
+</p>
+
+</div>
+
+{% endblock %}

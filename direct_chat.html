@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="chat-head">
+
+<a href="{{ url_for('people') }}">
+← People
+</a>
+
+<h1>
+{{ other.name }}
+</h1>
+
+<small>
+{{ other.email }}
+</small>
+
+</div>
+
+
+<div
+class="chat-box"
+id="chat">
+
+
+{% for m in messages %}
+
+<div
+class="message
+{% if m.sender_id == current_user.id %}
+mine
+{% endif %}">
+
+<b>
+{{ m.sender.name }}
+</b>
+
+<p>
+{{ m.body }}
+</p>
+
+<small>
+{{ m.created_at.strftime("%H:%M") }}
+</small>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+
+<form
+class="chat-form"
+method="post">
+
+<input
+name="body"
+placeholder="Write a private message..."
+autocomplete="off"
+required>
+
+<button class="button">
+Send
+</button>
+
+</form>
+
+
+<script>
+
+setInterval(
+function(){
+location.reload();
+},
+7000
+);
+
+</script>
+
+{% endblock %}

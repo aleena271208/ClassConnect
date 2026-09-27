@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+
+<div>
+
+<p class="eyebrow">
+ONLINE CLASSROOM + PRIVATE CHAT
+</p>
+
+<h1>
+One place for your classes and conversations.
+</h1>
+
+<p>
+Create classrooms, share a class code,
+post announcements, give assignments,
+chat with classmates, and privately
+message another registered user.
+</p>
+
+<div class="actions">
+
+<a class="button"
+href="{{ url_for('register') }}">
+Create account
+</a>
+
+<a class="button secondary"
+href="{{ url_for('login') }}">
+Log in
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

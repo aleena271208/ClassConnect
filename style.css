@@ -1,0 +1,359 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f6f7fb;
+    color: #172033;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    height: 68px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 10;
+}
+
+.brand {
+    font-size: 21px;
+    font-weight: 800;
+    color: #172033;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+nav a {
+    color: #39445a;
+    text-decoration: none;
+}
+
+.user {
+    font-weight: 700;
+}
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.hero {
+    min-height: 70vh;
+
+    display: flex;
+    align-items: center;
+}
+
+.hero > div {
+    max-width: 750px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    line-height: 1.03;
+    margin: 10px 0 20px;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #596579;
+}
+
+.eyebrow {
+    font-size: 12px !important;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #6574cd !important;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.button {
+    display: inline-block;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: #4f46e5;
+    color: white;
+
+    padding: 11px 16px;
+
+    text-decoration: none;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.button.secondary {
+    background: #e9eaf7;
+    color: #353a67;
+}
+
+.card {
+    background: white;
+
+    border: 1px solid #e4e7ef;
+    border-radius: 15px;
+
+    padding: 20px;
+    margin-bottom: 18px;
+
+    box-shadow: 0 5px 20px rgba(20, 30, 60, .04);
+}
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 18px;
+}
+
+.grid.two {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+}
+
+.page-head {
+    margin-bottom: 25px;
+}
+
+.class-card {
+    color: inherit;
+    text-decoration: none;
+}
+
+.class-card span {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+.class-banner {
+    background: #202a55;
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    margin-bottom: 24px;
+}
+
+.class-banner p {
+    color: #dbe1ff;
+}
+
+.code {
+    margin-top: 20px;
+
+    background: rgba(255, 255, 255, .1);
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    display: inline-block;
+}
+
+label {
+    display: block;
+
+    font-weight: 700;
+
+    margin: 12px 0;
+}
+
+input,
+textarea {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 7px;
+
+    padding: 11px;
+
+    border: 1px solid #d5d9e3;
+
+    border-radius: 9px;
+
+    font: inherit;
+
+    background: white;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+form .button {
+    margin-top: 8px;
+}
+
+.auth {
+    max-width: 480px;
+    margin: 50px auto;
+}
+
+.flash {
+    padding: 12px 15px;
+
+    border-radius: 9px;
+
+    margin-bottom: 15px;
+
+    background: #e7f7ed;
+}
+
+.flash.error {
+    background: #fde9e9;
+}
+
+.row,
+.member {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.member {
+    padding: 10px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+.member small {
+    color: #777;
+}
+
+.member a {
+    font-size: 13px;
+}
+
+.chat-head {
+    margin-bottom: 15px;
+}
+
+.chat-head a {
+    color: #4f46e5;
+}
+
+.chat-box {
+    height: 55vh;
+
+    overflow: auto;
+
+    background: white;
+
+    border: 1px solid #e3e6ed;
+
+    border-radius: 15px;
+
+    padding: 18px;
+}
+
+.chat-box.compact {
+    height: 450px;
+}
+
+.message {
+    max-width: 78%;
+
+    background: #f0f2f7;
+
+    border-radius: 12px;
+
+    padding: 9px 12px;
+
+    margin: 8px 0;
+}
+
+.message.mine {
+    margin-left: auto;
+
+    background: #e6e7ff;
+}
+
+.message p {
+    margin: 4px 0;
+
+    white-space: pre-wrap;
+}
+
+.message small {
+    color: #777;
+}
+
+.chat-form {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 10px;
+}
+
+.chat-form input {
+    margin: 0;
+}
+
+.chat-form .button {
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+
+    .grid.two {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    header {
+        padding: 0 4%;
+    }
+
+    nav {
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .user {
+        display: none;
+    }
+
+    .chat-form {
+        flex-direction: column;
+    }
+}

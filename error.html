@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card auth">
+
+<h1>
+{{ code }}
+</h1>
+
+<p>
+{{ message }}
+</p>
+
+<a
+class="button"
+href="{{ url_for('dashboard')
+if current_user.is_authenticated
+else url_for('home') }}">
+
+Go back
+
+</a>
+
+</div>
+
+{% endblock %}
